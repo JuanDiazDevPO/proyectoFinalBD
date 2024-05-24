@@ -43,7 +43,7 @@ export class VisitasComponent {
     this.Visita.id_empleado = event.target.value;
   }
   getValorCompra(event: any) {
-    this.Visita.valorCompra = event.target.value;
+    this.Visita.valorCompra =  event.target.value;
   }
   reloadData() {
     this.empleadoService.getVisitaList().subscribe(
