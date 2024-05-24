@@ -1,0 +1,77 @@
+<table class="table table-dark">
+  
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Bar</th>
+        <th>Empleado</th>
+        <th>Cliente</th>
+        <th>Valor</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      @for (Visita of paginatedVisitas; track Visita.id) {
+        <tr >
+          <td>{{Visita.id}}</td>
+          <td>{{Visita.fechaCreacion}}</td>
+          <td>{{Visita.id_bar}}</td>
+          <td>{{Visita.id_empleado}}</td>
+          <td>{{Visita.id_cliente}}</td>
+          <td>{{Visita.valorCompra}}</td>
+          <td>
+            <button (click)="updateVisita(Visita)" class="btn btn-info">Editar</button>
+            <button (click)="deleteVisita(Visita)" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+  
+      }
+      
+    </tbody>
+  </table>
+  <button (click)="addVisita()" class="btn btn-success">Agregar nuevo</button>
+  
+  
+  <div>
+    <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+    <span>Página {{page}}</span>
+    <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(visitas.length / pageSize)">Siguiente</button>
+  </div>
+  
+  <!-- Modal -->
+  <div id="VisitaModal" class="hidden modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="VisitaModalLabel" class="modal-title text-center">{{modalTitle}}</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombre">id</label>
+            <input type="text" id="nombre" class="form-control"  (input) = "getId($event)" value="{{Visita.id}}">
+          </div>
+         
+          <div class="form-group">
+            <label for="stock">Bar</label>
+            <input type="number" id="stock" class="form-control" (input) = "getIdBar($event)"value="{{Visita.id_bar}}">
+          </div>
+          <div class="form-group">
+            <label for="precio">Cliente</label>
+            <input type="number" id="precio" class="form-control" (input) = "getIdCliente($event)"value="{{Visita.id_cliente}}">
+          </div>
+          <div class="form-group">
+            <label for="empleado">Empleado</label>
+            <input type="number" id="empleado" class="form-control" (input) = "getIdCliente($event)"value="{{Visita.id_empleado}}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center" id = "footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary mr-2">Cancelar</button>
+        <button (click)="saveVisita()" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+  
+  

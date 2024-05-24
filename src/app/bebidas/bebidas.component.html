@@ -1,0 +1,73 @@
+<table class="table table-dark">
+  
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Stock</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @for (bebida of paginatedBebidas; track bebida.id) {
+      <tr >
+        <td>{{bebida.id}}</td>
+        <td>{{bebida.nombre}}</td>
+        <td>{{bebida.tipo}}</td>
+        <td>{{bebida.stock}}</td>
+        <td>{{bebida.precio}}</td>
+        <td>
+          <button (click)="updateBebida(bebida)" class="btn btn-info">Editar</button>
+          <button (click)="deleteBebida(bebida)" class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+
+    }
+    
+  </tbody>
+</table>
+<button (click)="addBebida()" class="btn btn-success">Agregar nuevo</button>
+
+
+<div>
+  <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+  <span>Página {{page}}</span>
+  <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(bebidas.length / pageSize)">Siguiente</button>
+</div>
+
+<!-- Modal -->
+<div id="bebidaModal" class="hidden modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 id="bebidaModalLabel" class="modal-title text-center">{{modalTitle}}</h5>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" class="form-control"  (input) = "getNombre($event)" value="{{bebida.nombre}}">
+        </div>
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <input type="text" id="tipo" class="form-control" (input) = "getTipo($event)" value="{{bebida.tipo}}">
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" class="form-control" (input) = "getStock($event)"value="{{bebida.stock}}">
+        </div>
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" class="form-control" (input) = "getPrecio($event)"value="{{bebida.precio}}">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer justify-content-center" id = "footer">
+      <button (click)="closeModal()" type="button" class="btn btn-secondary mr-2">Cancelar</button>
+      <button (click)="saveBebida()" type="button" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+</div>
+

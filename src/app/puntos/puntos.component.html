@@ -1,0 +1,38 @@
+<table class="table table-dark">
+  
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cantidad</th>
+        <th>Cliente</th>
+        <th>Redencion</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+  
+      @for (punto of paginatedpuntos; track punto.id) {
+        <tr >
+          <td>{{punto.id}}</td>
+          <td>{{punto.cantidad}}</td>
+          <td>{{punto.id_cliente}}</td>
+          <td>{{punto.ultimaRedencion}}</td>
+          
+          <td>
+            
+          </td>
+        </tr>
+  
+      }
+      
+    </tbody>
+  </table>
+  
+  
+  
+  <div>
+    <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+    <span> Pág {{page}}</span>
+    <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(puntos.length / pageSize)">Siguiente</button>
+  </div>
+  

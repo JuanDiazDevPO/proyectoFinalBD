@@ -1,0 +1,72 @@
+.container {
+
+  width: 100%;
+  height: 100vh;
+}
+
+
+#btn{
+
+  margin-top: 2%;
+  position: absolute;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(255, 255, 255);
+}
+
+.nav-container {
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Ajustes para los botones de navegación */
+.nav-pills button {
+  padding: 10px 15px;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-pills button:hover {
+  background-color: #81e291;
+}
+
+/* Ajustes para el contenido de la navegación */
+[ngbNavContent] {
+  width: 100%;
+  padding: 2px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Ajustes para la clase ms-4 */
+.ms-4 {
+  margin-left: 20px; /* Ajusta el margen izquierdo */
+}
+/* Ajustes para el contenido de la navegación */
+ng-template[ngbNavContent] {
+  width: 100%; /* O ajusta el ancho deseado */
+  /* El resto de tus estilos... */
+}
+
+
+
+

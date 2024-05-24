@@ -1,0 +1,82 @@
+<table class="table table-dark">
+  
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cargo</th>
+        <th>Direccion</th>
+        <th>Tel</th>
+        <th>User</th>
+        <th>Do</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      @for (empleado of paginatedEmpleados; track empleado.nombre) {
+        <tr >
+          <td>{{empleado.nombre}}</td>
+          <td>{{empleado.cargo}}</td>
+          <td>{{empleado.direccion}}</td>
+          <td>{{empleado.telefono}}</td>
+          <td>{{empleado.usuario}}</td>
+          <td>{{empleado.id_bar}}</td>
+          <td>
+            <button (click)="deleteEmpleado(empleado)" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+  
+      }
+      
+    </tbody>
+  </table>
+  <button (click)="addEmpleado()" class="btn btn-success">Agregar nuevo</button>
+  
+  
+  <div>
+    <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+    <span>Página {{page}}</span>
+    <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(empleados.length / pageSize)">Siguiente</button>
+  </div>
+  
+  <!-- Modal -->
+  <div id="empleadoModal" class="hidden modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="empleadoModalLabel" class="modal-title text-center">{{modalTitle}}</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="id">Id</label>
+                <input type="id" id="id" class="form-control"  (input) = "getId($event)" value="{{empleado.id}}">
+              </div>
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" class="form-control"  (input) = "getNombre($event)" value="{{empleado.nombre}}">
+          </div>
+          <div class="form-group">
+            <label for="tipo">Bar</label>
+            <input type="text" id="tipo" class="form-control" (input) = "getBar($event)" value="{{empleado.id_bar}}">
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo</label>
+            <input type="text" id="cargo" class="form-control" (input) = "getCargo($event)"value="{{empleado.cargo}}">
+          </div>
+          <div class="form-group">
+            <label for="contrasena">Contrasena</label>
+            <input type="text" id="contrasena" class="form-control" (input) = "getContrasena($event)"value="{{empleado.contrasena}}">
+          </div>
+          <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" class="form-control" (input) = "getUsuario($event)"value="{{empleado.usuario}}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center" id = "footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary mr-2">Cancelar</button>
+        <button (click)="saveEmpleado()" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+  
+  

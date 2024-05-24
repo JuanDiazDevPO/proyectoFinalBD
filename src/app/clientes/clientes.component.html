@@ -1,0 +1,70 @@
+<table class="table table-dark">
+  
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      @for (cliente of paginatedclientes; track cliente.id) {
+        <tr >
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.direccion}}</td>
+          <td>{{cliente.telefono}}</td>
+          
+          <td>
+            <button (click)="updatecliente(cliente)" class="btn btn-info">Editar</button>
+            <button (click)="deletecliente(cliente)" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+  
+      }
+      
+    </tbody>
+  </table>
+  <button (click)="addcliente()" class="btn btn-success">Agregar nuevo</button>
+  
+  
+  <div>
+    <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+    <span>Página {{page}}</span>
+    <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(clientes.length / pageSize)">Siguiente</button>
+  </div>
+  
+  <!-- Modal -->
+  <div id="clienteModal" class="hidden modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="clienteModalLabel" class="modal-title text-center">{{modalTitle}}</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" class="form-control"  (input) = "getNombre($event)" value="{{cliente.nombre}}">
+          </div>
+          <div class="form-group">
+            <label for="tipo">Direccion</label>
+            <input type="text" id="tipo" class="form-control" (input) = "getDireccion($event)" value="{{cliente.direccion}}">
+          </div>
+          <div class="form-group">
+            <label for="stock">Telefono</label>
+            <input type="number" id="stock" class="form-control" (input) = "getTelefonp($event)"value="{{cliente.telefono}}">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center" id = "footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary mr-2">Cancelar</button>
+        <button (click)="savecliente()" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+  
+  

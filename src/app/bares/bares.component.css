@@ -1,0 +1,17 @@
+.hidden {
+    display: none;
+  }
+.modal-header{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+    
+   
+}
+#footer{
+    padding-top:  2%;
+}
+#button{
+    margin-bottom: 1%;
+}

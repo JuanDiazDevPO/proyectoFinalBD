@@ -1,0 +1,97 @@
+
+<div class="container">
+	<h1>Gestion de Tita-bernas, bienvenido  {{setEmpleado()}}</h1>
+
+	<button id = "btn" (click)="logOff()" class="btn btn-light">Logoff</button>
+	
+	<div class="nav-container">
+		
+		<div class="d-flex">
+			<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column"
+				orientation="vertical">
+				
+				
+
+				<ng-container ngbNavItem="Bares">
+					<button ngbNavLink>Bares</button>
+					<ng-template ngbNavContent>
+
+						<app-bares></app-bares>
+
+					</ng-template>
+				</ng-container>
+
+				<ng-container ngbNavItem="Bebidas">
+					<button ngbNavLink>Bebidas</button>
+					<ng-template ngbNavContent>
+
+						<app-bebidas></app-bebidas>
+
+					</ng-template>
+				</ng-container>
+
+				<ng-container ngbNavItem="Puntos">
+					<button ngbNavLink>Puntos</button>
+					<ng-template ngbNavContent>
+
+						<app-puntos></app-puntos>
+
+					</ng-template>
+				</ng-container>
+
+				<ng-container ngbNavItem="Clientes">
+					<button ngbNavLink>Clientes</button>
+					<ng-template ngbNavContent>
+
+						<app-clientes></app-clientes>
+
+					</ng-template>
+				</ng-container>
+
+				<ng-container ngbNavItem="Pedidos">
+					<button ngbNavLink>Pedidos</button>
+					<ng-template ngbNavContent>
+
+						<app-pedidos></app-pedidos>
+
+					</ng-template>
+				</ng-container>
+				@if (empleadoActual.cargo == "Dueño") {
+				<ng-container ngbNavItem="Empleados">
+					<button ngbNavLink>Empleados</button>
+					<ng-template ngbNavContent>
+
+						<app-empleados></app-empleados>
+
+					</ng-template>
+				</ng-container>
+				
+					<ng-container ngbNavItem="Auditoria">
+						<button ngbNavLink>Auditoria</button>
+						<ng-template ngbNavContent>
+	
+							<app-auditoria></app-auditoria>
+	
+						</ng-template>
+					</ng-container>
+				}
+				
+
+				<ng-container ngbNavItem="visitas">
+					<button ngbNavLink>visitas</button>
+					<ng-template ngbNavContent>
+
+						<app-visitas></app-visitas>
+						
+					</ng-template>
+				</ng-container>
+
+				
+			</div>
+			<div [ngbNavOutlet]="nav" class="ms-4"></div>
+		</div>
+	</div>
+
+	
+</div>
+

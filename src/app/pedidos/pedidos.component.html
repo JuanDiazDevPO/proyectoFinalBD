@@ -1,0 +1,71 @@
+<table class="table table-dark">
+  
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Bar</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      @for (pedido of paginatedPedidos; track pedido.id) {
+        <tr >
+          <td>{{pedido.id}}</td>
+          <td>{{pedido.id_bar}}</td>
+          <td>{{pedido.fechaCreacion}}</td>
+          <td>{{pedido.id_cliente}}</td>
+
+          <td>
+            <button (click)="updatePedido(pedido)" class="btn btn-info">Editar</button>
+            <button (click)="deletePedido(pedido)" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+  
+      }
+      
+    </tbody>
+  </table>
+  <button (click)="addPedido()" class="btn btn-success">Agregar nuevo</button>
+  
+  
+  <div>
+    <button class="btn btn-light" (click)="page = page - 1" [disabled]="page === 1">Anterior</button>
+    <span>Página {{page}}</span>
+    <button class="btn btn-light" (click)="page = page + 1" [disabled]="page === Math.ceil(pedidos.length / pageSize)">Siguiente</button>
+  </div>
+  
+  <!-- Modal -->
+  <div id="pedidoModal" class="hidden modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="pedidoModalLabel" class="modal-title text-center">{{modalTitle}}</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombre">Id</label>
+            <input type="text" id="nombre" class="form-control"  (input) = "getId($event)" value="{{pedido.id}}">
+          </div>
+          <div class="form-group">
+            <label for="tipo">Bar</label>
+            <input type="text" id="tipo" class="form-control" (input) = "getIdBar($event)" value="{{pedido.id_bar}}">
+          </div>
+          
+          <div class="form-group">
+            <label for="stock">Cliente</label>
+            <input type="number" id="stock" class="form-control" (input) = "getCliente($event)"value="{{pedido.id_cliente}}">
+          </div>
+       
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center" id = "footer">
+        <button (click)="closeModal()" type="button" class="btn btn-secondary mr-2">Cancelar</button>
+        <button (click)="savePedido()" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+  
+  
